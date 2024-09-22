@@ -1,0 +1,22 @@
+<div class="containeer mt-5">
+    <div *ngIf="!registerMode" style="text-align: center;">
+        <h1>Find your match !</h1>
+        <p class="lead">Come on into the view Matches...all you need to so Sign up</p>
+        <div class="text-center">
+            <button class="btn btn-primary btn-lg me-2" (click)="resgister()">
+              Register
+            </button>
+            <button class="btn btn-primary btn-lg btn-info">
+                Learn More !
+            </button>
+        </div>
+    </div>
+    <div *ngIf="registerMode" class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <app-register (cancelancelRegister)="canceluser($event)"></app-register>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,66 @@
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" >
+      
+      <div class="container">
+         
+
+        <a class="navbar-brand" routerLink="/" routerLinkActive="active">Dating App</a>
+       
+        <ng-container *ngIf="accountService.currentUser$ | async">
+          <ul class="navbar-nav me-auto mb-2 md-md-0" >
+           
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/messages" routerLinkActive="active">Message</a>
+            </li>
+           
+          
+
+            <li class="nav-item" (click)="logOut()">
+                <a class="nav-link" >Logout</a>
+              </li>
+          </ul>
+          
+        </ng-container>
+        <ul class="navbar-nav me-auto mb-2 md-md-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/error" routerLinkActive="active">Error</a>
+          </li>
+        </ul>
+         
+
+          <div class="btn-group" dropdown *ngIf="(accountService.currentUser$ | async) as users">
+            <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                    aria-controls="dropdown-basic">
+              Welcome {{users.username | titlecase}}<span class="caret"></span>
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                role="menu" aria-labelledby="button-basic">
+              <li role="menuitem"><a class="dropdown-item" >Edit Profile</a></li>
+              <li role="menuitem"><a class="dropdown-item" (click)="logOut()">Logout</a></li>
+              
+            </ul>
+          </div>
+        
+            <form *ngIf="!(accountService.currentUser$ | async)" #loginform="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
+                <input class="form-control me-2" 
+                 name="username"
+               [(ngModel)]="model.username"
+                type="text" placeholder="Username">
+                <input class="form-control me-2" 
+                name="password"
+                [(ngModel)]="model.password"
+                type="password" placeholder="Password">
+                <button class="btn btn-outline-success " type="submit">Login</button>
+              </form>
+            </div>
+      </nav>
+      
